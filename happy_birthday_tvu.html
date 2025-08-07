@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday Tvu 🎂</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #ffe4f2, #e1f5ff);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow: hidden;
+    }
+
+    .background {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: -100px;
+      width: 40px;
+      height: 60px;
+      background-color: pink;
+      border-radius: 50% 50% 40% 40%;
+      animation: floatUp 10s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes floatUp {
+      0% { bottom: -100px; opacity: 1; }
+      100% { bottom: 110%; opacity: 0; }
+    }
+
+    .cake {
+      position: relative;
+      margin: 100px auto 0;
+      width: 300px;
+      height: 200px;
+      background: #ffb6c1;
+      border-radius: 0 0 30px 30px;
+      box-shadow: 0 8px #ff8ba7;
+      text-align: center;
+      z-index: 2;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .cake:hover {
+      transform: scale(1.05);
+    }
+
+    .frosting {
+      position: absolute;
+      top: -40px;
+      width: 100%;
+      height: 40px;
+      background: #fff0f5;
+      border-radius: 50% 50% 0 0;
+      box-shadow: 0 -2px #f8c8dc inset;
+    }
+
+    .name {
+      position: absolute;
+      bottom: 60px;
+      width: 100%;
+      font-size: 30px;
+      color: #fff;
+      font-weight: bold;
+      text-shadow: 1px 1px #ff69b4;
+    }
+
+    .candles {
+      position: absolute;
+      top: -70px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+    }
+
+    .candle {
+      width: 10px;
+      height: 60px;
+      background: #fffacd;
+      border-radius: 5px;
+      position: relative;
+      box-shadow: 0 0 5px #fffacd;
+    }
+
+    .flame {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      width: 15px;
+      height: 15px;
+      background: radial-gradient(circle, yellow, orange, red);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      animation: flicker 0.2s infinite alternate;
+    }
+
+    @keyframes flicker {
+      from { transform: translateX(-50%) scale(1); }
+      to { transform: translateX(-50%) scale(1.2); }
+    }
+
+    .message {
+      display: none;
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff0f5;
+      padding: 15px 25px;
+      border-radius: 20px;
+      font-size: 18px;
+      color: #ff1493;
+      box-shadow: 0 0 10px #ffadd9;
+      z-index: 3;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateX(-50%) scale(0.8); }
+      to { opacity: 1; transform: translateX(-50%) scale(1); }
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: red;
+      animation: fall 3s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100px) rotate(0); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="background" id="balloons"></div>
+
+  <div class="cake" onclick="showMessage()">
+    <div class="frosting"></div>
+    <div class="candles">
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+    </div>
+    <div class="name">Tvu</div>
+  </div>
+
+  <div class="message" id="birthdayMessage">
+    🎉 To tvu - Chúc tvu tuổi mới xinh hơn hôm qua, rực rỡ hơn hôm nay và thành công hơn ngày mai.
+    Chúc mừng sinh nhật con người mang vibes "ngầu lòi – vui tươi – đáng yêu vô đối"
+    Chúc tvu dám mơ, dám làm, dám sai, và dám yêu – theo cách riêng của chính mình. 🎂✨
+  </div>
+
+  <iframe width="0" height="0" 
+    src="https://www.youtube.com/embed/2-V3-WM-T-Y?autoplay=1&loop=1&playlist=2-V3-WM-T-Y"
+    title="Birthday Song" 
+    frameborder="0" allow="autoplay" allowfullscreen>
+  </iframe>
+
+  <script>
+    function createBalloon() {
+      const balloon = document.createElement('div');
+      balloon.className = 'balloon';
+      balloon.style.left = Math.random() * 100 + '%';
+      balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 80%, 80%)`;
+      balloon.style.animationDuration = `${6 + Math.random() * 6}s`;
+      document.getElementById('balloons').appendChild(balloon);
+      setTimeout(() => balloon.remove(), 12000);
+    }
+
+    setInterval(createBalloon, 500);
+
+    function showMessage() {
+      const msg = document.getElementById("birthdayMessage");
+      msg.style.display = "block";
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.top = "-10px";
+        confetti.style.animationDuration = (Math.random() * 2 + 2) + "s";
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 3000);
+      }
+    }
+  </script>
+</body>
+</html>
